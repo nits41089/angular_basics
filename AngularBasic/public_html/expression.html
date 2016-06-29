@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>Angular JS Basics - Start</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include angular.js library file -->
+    <script type="text/javascript" src="js/angular.js"></script> 
+  </head>
+  <!-- Giving control to Angular JS for the whole body of the document -->
+  <body ng-app> 
+    <p>The number {{3 + 4}}.</p> <!-- Inside p tag there is an angular expression which is a valid Javascript code. Although control structures and loops are not permitted. --> 
+    <!-- If angular fails to process and expression, it outputs original string or in some case nothing at all. -->
+    <!-- The double curly brackets are template delimiters. -->
+    <!-- One way to think of Angular is just as a really sophisticated templating library. It treats everything within element you marked with ng-app as a template that is compiled when your page loads and re-rendered whenever there are changes to data. -->
+    <p>Are strings and numbers equal? {{'2' == 2}}</p>
+    <p>Are strings and numbers equal? {{'2' === 2}}</p>
+    <!-- Below example to demonstrate that we have access to standard library functions such as String -->
+    <p>{{"Angular" + "js".toUpperCase()}}</p>
+    <!-- Invalid code! This function call is not permitted in an expression. -->
+    <p>{{alert("Hello world.")}}</p>
+    
+    <!-- Assigning variables in angular -->
+    <p>{{a=1; a+a}}</p>
+    
+    <!--<p>{{var a=1; a+a}}</p> Adding var will cause error and all the expressions will appear in raw format.-->
+    
+    <p>{{ a = 1 }} remains {{a}}</p> <!-- A variable set in one set of delimiter can be used in another -->
+    
+    <p>{{a}} remains {{ a = 1 }}</p> <!-- irrespective of the order. -->
+    
+    <p>There {{count = 1; (count == 1 ? "is " : "are ") + count}} of them.</p> <!-- Ternary operators also work in delimiter. -->
+    
+    <!-- Increment operator does not work, nor does loops, conditional or throwing errors. -->
+  </body>
+</html>
