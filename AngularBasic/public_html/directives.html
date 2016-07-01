@@ -6,11 +6,60 @@ and open the template in the editor.
 -->
 <html>
   <head>
-    <title>TODO supply a title</title>
+    <title>Angular Basics - Directives</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/angular.js"></script>
   </head>
-  <body>
-    <div>TODO write content</div>
+  <body ng-app> <!-- Passing value to ng-app attribute, this value is the module name -->
+    <p>The number <span ng-bind="3 + 4"></span>.</p> <!-- The content of the element to which you provide ng-bind is replaced when the template is rendered. -->
+    
+    <div ng-init="sum = 3 + 2"> <!-- variable is initialized. use it anywhere inside the element. -->
+      <p>{{sum + 1}} is more than <span ng-bind="sum - 1"></span>.</p>
+    </div>
+    
+    <div ng-init="count = 7; units = 'days'; collection='weeks'"> <!-- Initializing multiple variables using semicolon -->
+      <p>There are {{count}} {{units}} in a {{collection}}</p>
+    </div>
+    
+    <!-- At some point, you may find it better to organize your variables as the properties of an object. -->
+    <div ng-init="time = {count: 12, units: 'months', collection: 'year'}">
+      <p>
+        There are {{time.count}} {{time.units}} in a {{time.collection}}.
+      </p>
+    </div>
+    
+    <!-- Arrays are also useful. -->
+    <div ng-init="months = ['January','February','March','April']">
+      <p>
+        {{months[3]}} follows {{months[2]}} in {{months}}.
+      </p>
+    </div>
+    
+    <!-- Be careful with properties, you can find the error by looking in the template but don't expect any help from Angular, it is quite tolerable. -->
+    <div ng-init="paragraph = {sentence: {words: ['first','second','third']}}">
+      <p>
+        "{{typo.sentence.words[0]}}",
+        "{{paragraph.typo.words[1]}}",
+        "{{paragraph.sentence.typo[2]}}",
+        "{{paragraph.sentence.words[3]}}".
+      </p>
+    </div>
+    
+    <!-- Function expression is not allowed. Correct place to declare a function is in controller. ng-init is actually intended for aliasing variables as a way to cope with variable shadowing.-->
+    <div ng-init="count = function() { return 12; }">
+      <p>
+        There are {{count()}} months in a year.
+      </p>
+    </div>
+    
+    <!-- Exclude content from compilation -->
+    <p ng-non-bindable>
+      {{2 * 2}} is the same as <span ng-bind='2 + 2'>?</span>
+    </p>
+    
+    <p ng-show = 'true'>Show this content.</p>
+    <p ng-hide = 'true'>Hide this content.</p>
+    
   </body>
 </html>
